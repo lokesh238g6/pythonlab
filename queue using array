@@ -1,0 +1,40 @@
+class Queue:
+    def __init__(self):
+        self.front = -1
+        self.rear = -1
+        self.queue = []
+
+    def enqueue(self, data):
+        if self.front == -1 and self.rear == -1:
+            self.front = 0
+            self.rear = 0
+            self.queue.append(data)
+        else:
+            self.rear += 1
+            self.queue.append(data)
+    def dequeue(self):
+        if self.front == -1:
+            print("Queue is empty")
+            return None
+        else:
+            data = self.queue[self.front]
+            self.front += 1
+            
+            if self.front > self.rear:  
+                self.front = -1
+                self.rear = -1
+            return data
+    def display(self):
+        if self.front == -1:
+            print("Queue is empty")
+        else:
+            print("Queue:", self.queue[self.front:self.rear + 1])       
+s = Queue()
+n = int(input('Enter the number of elements to enqueue: '))
+for i in range(n):
+    data = int(input('Enter data: '))
+    s.enqueue(data)
+
+s.display()
+s.dequeue()
+s.display()
